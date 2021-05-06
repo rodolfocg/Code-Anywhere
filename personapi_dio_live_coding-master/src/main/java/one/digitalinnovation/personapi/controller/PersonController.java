@@ -5,6 +5,7 @@ import one.digitalinnovation.personapi.dto.request.PersonDTO;
 import one.digitalinnovation.personapi.dto.response.MessageResponseDTO;
 import one.digitalinnovation.personapi.entity.Person;
 import one.digitalinnovation.personapi.exception.PersonNotFoundException;
+import one.digitalinnovation.personapi.repository.PersonRepository;
 import one.digitalinnovation.personapi.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,8 +27,19 @@ import java.util.List;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PersonController {
 
-    @GetMapping
-    public String getBook() {
-        return "API Test";
+    private PersonRepository personRepository;
+
+    @Autowired
+    public PersonController(PersonRepository personRepository) {
+        this.personRepository = personRepository;
+    }
+
+    @PostMapping
+    public MessageResponseDTO createPerson(@RequestBody Person person) {
+        Person savedPerson = personRepository.save(person);
+        return MessageResponseDTO
+                .builder()
+                .message("created person with ID" + savedPerson.getId())
+                .build();
     }
 }
