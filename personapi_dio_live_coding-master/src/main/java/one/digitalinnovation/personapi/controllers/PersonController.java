@@ -1,10 +1,9 @@
-package one.digitalinnovation.personapi.controller;
+package one.digitalinnovation.personapi.controllers;
 
 import lombok.AllArgsConstructor;
 import one.digitalinnovation.personapi.dto.response.MessageResponseDTO;
-import one.digitalinnovation.personapi.entity.Person;
-import one.digitalinnovation.personapi.repository.PersonRepository;
-import one.digitalinnovation.personapi.services.PersonService;
+import one.digitalinnovation.personapi.entities.Person;
+import one.digitalinnovation.personapi.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
